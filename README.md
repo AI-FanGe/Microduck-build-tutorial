@@ -26,13 +26,7 @@ Microduck 是一个小型双足机器人项目，包含两部分：
 当前预构建镜像：
 
 - [microduck.img.xz](https://github.com/AI-FanGe/Microduck-build-tutorial/releases/download/image.v1/microduck.img.xz)
-- [microduck.img.xz.sha256](https://github.com/AI-FanGe/Microduck-build-tutorial/releases/download/image.v1/microduck.img.xz.sha256)
 
-SHA256:
-
-```text
-096885dc32fb5b1db2ad69ba6bea868d8ab988f2b47c0d884eb63ba0dfdcb5c4
-```
 
 ## BOM
 
