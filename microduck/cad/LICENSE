@@ -1,0 +1,22 @@
+Microduck hardware design files (CAD)
+Copyright (c) 2026 Marc Duclusaud
+
+All files in this directory (STL and STEP files) are licensed under the
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+License (CC BY-NC-SA 4.0).
+
+    SPDX-License-Identifier: CC-BY-NC-SA-4.0
+
+Because these are binary files that cannot carry an embedded notice, this
+file serves as the license notice for the whole directory.
+
+Source Location: https://github.com/Rhoban/microduck
+
+You are free to share and adapt these files for non-commercial purposes,
+provided you give appropriate credit and distribute your contributions
+under the same license. Commercial use requires prior written permission
+from the author.
+
+The full text of the CC BY-NC-SA 4.0 license is available in the LICENSE
+file at the root of this repository, and at
+https://creativecommons.org/licenses/by-nc-sa/4.0/

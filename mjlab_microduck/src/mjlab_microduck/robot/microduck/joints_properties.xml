@@ -1,0 +1,40 @@
+<default>
+    <default class="perfect_actuator">
+        <geom contype="0" conaffinity="0"/>
+        <joint damping="0.15" frictionloss="0.1" armature="0.001"/>
+        <position kp="10.0" kv="0.1" forcerange="-20.0 20.0"/>
+    </default>
+    <default class="chosen_actuator_old">
+      <geom contype="0" conaffinity="0"/>
+      <joint damping="0.048" frictionloss="0.006" armature="0.002"/>
+      <position kp="0.52" kv="0.0" forcerange="-0.91 0.91" ctrlrange="-10.0 10.0"/>
+    </default>
+    <default class="chosen_actuator_new">
+      <!-- removing contaminated data -->
+      <geom contype="0" conaffinity="0"/>
+      <joint damping="0.041" frictionloss="0.032" armature="0.002"/>
+      <position kp="0.386" kv="0.0" forcerange="-0.67 0.67" ctrlrange="-10.0 10.0"/>
+    </default>  
+    <default class="chosen_actuator_antoine">
+      <geom contype="0" conaffinity="0"/>
+      <joint damping="0.044" frictionloss="0.013" armature="0.0017"/>
+      <position kp="0.43" kv="0.0" forcerange="-0.75 0.75" ctrlrange="-10.0 10.0"/>
+    </default>
+    <default class="chosen_actuator">
+      <!-- marc -->
+      <geom contype="0" conaffinity="0"/>
+      <joint damping="0.053" frictionloss="0.0048" armature="0.0018"/>
+      <!-- 200 kp -->
+      <position kp="0.55" kv="0.0" forcerange="-0.96 0.96" ctrlrange="-10.0 10.0"/>
+      <!-- 125 kp -->
+      <!-- <position kp="0.35" kv="0.0" forcerange="-0.96 0.96" ctrlrange="-10.0 10.0"/> -->
+    </default>
+    <default class="passive_wheel">
+      <geom contype="0" conaffinity="0"/>
+      <joint damping="0.0" frictionloss="0.0" armature="0.0001"/>
+    </default>
+    <default class="passive_joint">
+      <geom contype="0" conaffinity="0"/>
+      <joint damping="0.0" frictionloss="0.0" armature="0.0001"/>
+    </default>
+</default>

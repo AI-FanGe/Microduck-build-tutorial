@@ -1,0 +1,7 @@
+**__pycache__/
+
+uv.lock
+
+logs/
+
+placo_test.py

@@ -1,0 +1,24 @@
+# Headless gamepad launcher for Microduck (opt-in).
+#
+# Reference unit for the default image (user "user", repo at /home/user/microduck).
+# `make gamepad-headless-enable` installs a copy generated from the robot's real
+# $HOME/$USER, so this still works if you renamed the account. Enable manually with:
+#   sudo cp systemd/microduck-gamepad.service /etc/systemd/system/
+#   sudo systemctl enable --now microduck-gamepad
+[Unit]
+Description=Microduck headless gamepad launcher
+After=bluetooth.target
+
+[Service]
+Type=simple
+User=user
+WorkingDirectory=/home/user/microduck
+Environment=PYTHONPATH=/home/user/microduck/src
+ExecStart=/home/user/microduck/.venv/bin/python -u src/gamepad_daemon.py
+Restart=on-failure
+RestartSec=2
+# Safety: never leave Wi-Fi blocked if the service is stopped mid-session.
+ExecStopPost=/usr/bin/sudo /usr/sbin/rfkill unblock wifi
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+{
+    "configuration": "default",
+    "documentId": "d424992a192a8ce34ffce163",
+    "documentMicroversion": "9f40d1a6201f3fd4d73cd90d",
+    "elementId": "d0e7a49ea41bd6957a77e203",
+    "fullConfiguration": "default",
+    "id": "MbUAQMpCX/JumElPM",
+    "isStandardContent": false,
+    "name": "battery <1>",
+    "partId": "JXD",
+    "suppressed": false,
+    "type": "Part"
+}

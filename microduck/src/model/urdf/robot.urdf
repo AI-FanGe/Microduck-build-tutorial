@@ -1,0 +1,652 @@
+<?xml version="1.0" ?>
+<!-- Generated using onshape-to-robot -->
+<!-- Onshape https://cad.onshape.com/documents/d424992a192a8ce34ffce163/v/d1df625a85f2de984257464b/e/b34620a03cc3a684006c5867 -->
+<robot name="urdf">
+  <!-- Link trunk -->
+  <link name="trunk">
+    <inertial>
+      <origin xyz="-0.00454781 -0.000104579 0.053896" rpy="0 0 0"/>
+      <mass value="0.347283"/>
+      <inertia ixx="0.000608722" ixy="-5.1387e-07" ixz="-1.16287e-05" iyy="0.000477224" iyz="1.9299e-06" izz="0.000357224"/>
+    </inertial>
+    <!-- Part stp39__configuration__2_2x8 -->
+    <!-- Part stp39__configuration__2_2x8_2 -->
+    <!-- Part arm_bearing_support__configuration_right -->
+    <!-- Part xl330_without_horn -->
+    <!-- Part steel_shim -->
+    <!-- Part pelvis__configuration_right -->
+    <!-- Part stp39__configuration__2_2x8_3 -->
+    <!-- Part arm_bearing_support__configuration_right_2 -->
+    <!-- Part xl330_without_horn_2 -->
+    <!-- Part stp39__configuration__2_2x8_4 -->
+    <!-- Part hat -->
+    <!-- Part xl330_without_horn_3 -->
+    <!-- Part steel_shim_2 -->
+    <!-- Part washer -->
+    <!-- Part xl330_without_horn_4 -->
+    <!-- Part stp39__configuration__2_2x8_5 -->
+    <!-- Part steel_shim_3 -->
+    <!-- Part steel_shim_4 -->
+    <!-- Part stp39__configuration__2_2x8_6 -->
+    <!-- Part chest__configuration_right -->
+    <!-- Part trunk_top__configuration_right -->
+    <!-- Part stp39__configuration__2_2x8_7 -->
+    <!-- Part washer_2 -->
+    <!-- Part pom_shim -->
+    <!-- Part pom_shim_2 -->
+    <!-- Part stp39__configuration__2_2x8_8 -->
+    <!-- Part stp39__configuration__2_2x8_9 -->
+    <!-- Part stp39__configuration__2_2x8_10 -->
+    <!-- Part stp39__configuration__2_2x8_11 -->
+    <!-- Part steel_shim_5 -->
+    <!-- Part steel_shim_6 -->
+    <!-- Part battery -->
+    <!-- Part bms -->
+    <!-- Part steel_shim_7 -->
+    <!-- Part stp39__configuration__2_2x8_12 -->
+    <!-- Part pom_shim_3 -->
+    <!-- Part switch -->
+    <!-- Part stp39__configuration__2_2x8_13 -->
+    <!-- Part stp39__configuration__2_2x8_14 -->
+    <!-- Part stp39__configuration__2_2x8_15 -->
+    <!-- Part raspberry_pi_zero_2w -->
+    <!-- Part washer_3 -->
+    <!-- Part stp39__configuration__2_2x8_16 -->
+    <!-- Part washer_4 -->
+    <!-- Part steel_shim_8 -->
+    <!-- Part stp39__configuration__2_2x8_17 -->
+    <!-- Part xl330_without_horn_5 -->
+    <!-- Part pom_shim_4 -->
+    <!-- Part stp39__configuration__2_2x8_18 -->
+    <!-- Part charger -->
+  </link>
+  <!-- Frame body (dummy link + fixed joint) -->
+  <link name="body">
+    <origin xyz="0 0 0" rpy="0 -0 0"/>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-9"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+  </link>
+  <joint name="body_frame" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="trunk"/>
+    <child link="body"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <!-- Frame imu (dummy link + fixed joint) -->
+  <link name="imu">
+    <origin xyz="0 0 0" rpy="0 -0 0"/>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-9"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+  </link>
+  <joint name="imu_frame" type="fixed">
+    <origin xyz="0.01483 -0.002 0.0675" rpy="1.5708 -0 -1.5708"/>
+    <parent link="trunk"/>
+    <child link="imu"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <!-- Link head -->
+  <link name="head">
+    <inertial>
+      <origin xyz="5.1303e-08 -0.0074561 0.0161837" rpy="0 0 0"/>
+      <mass value="0.0166215"/>
+      <inertia ixx="2.92963e-06" ixy="-1.6e-11" ixz="4e-12" iyy="3.58354e-06" iyz="2.61187e-07" izz="4.24694e-06"/>
+    </inertial>
+    <!-- Part stp39__configuration__2x6 -->
+    <!-- Part stp39__configuration__2x6_2 -->
+    <!-- Part head__configuration_right -->
+    <!-- Part stp39__configuration__2x6_3 -->
+    <!-- Part stp39__configuration__2x6_4 -->
+  </link>
+  <!-- Joint from trunk to head -->
+  <joint name="head" type="revolute">
+    <origin xyz="-0.00204165 -0 0.126" rpy="0 0 1.5708"/>
+    <parent link="trunk"/>
+    <child link="head"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-1.5708" upper="1.5708"/>
+  </joint>
+  <!-- Link shoulder -->
+  <link name="shoulder">
+    <inertial>
+      <origin xyz="4.19e-10 2.814e-09 -0.00850029" rpy="0 0 0"/>
+      <mass value="0.00898451"/>
+      <inertia ixx="1.06003e-06" ixy="0" ixz="0" iyy="1.78233e-06" iyz="-0" izz="1.86739e-06"/>
+    </inertial>
+    <!-- Part stp39__configuration__2x6_5 -->
+    <!-- Part stp39__configuration__2x6_6 -->
+    <!-- Part stp39__configuration__2x6_7 -->
+    <!-- Part stp39__configuration__2x6_8 -->
+    <!-- Part stp39__configuration__2x6_9 -->
+    <!-- Part stp39__configuration__2x6_10 -->
+    <!-- Part stp39__configuration__2x6_11 -->
+    <!-- Part stp39__configuration__2x6_12 -->
+    <!-- Part stp39__configuration__2x6_13 -->
+    <!-- Part shoulder -->
+    <!-- Part stp39__configuration__2x6_14 -->
+    <!-- Part stp39__configuration__2x6_15 -->
+    <!-- Part stp39__configuration__2x6_16 -->
+  </link>
+  <!-- Link humerus__configuration_right -->
+  <link name="humerus__configuration_right">
+    <inertial>
+      <origin xyz="-0.000309872 -0.0252784 -0.0143918" rpy="0 0 0"/>
+      <mass value="0.0416867"/>
+      <inertia ixx="1.76899e-05" ixy="-3.03216e-07" ixz="-2.278e-09" iyy="3.95132e-06" iyz="-7.8184e-08" izz="1.75854e-05"/>
+    </inertial>
+    <!-- Part stp39__configuration__2_2x8_19 -->
+    <!-- Part stp39__configuration__2_2x8_20 -->
+    <!-- Part stp39__configuration__2_2x8_21 -->
+    <!-- Part stp39__configuration__2_2x8_22 -->
+    <!-- Part xl330 -->
+    <!-- Part stp39__configuration__2_2x8_23 -->
+    <!-- Part stp39__configuration__2_2x8_24 -->
+    <!-- Part xl330_without_horn_6 -->
+    <!-- Part stp39__configuration__2_2x8_25 -->
+    <!-- Part stp39__configuration__2_2x8_26 -->
+    <!-- Part humerus -->
+  </link>
+  <!-- Link radius -->
+  <link name="radius">
+    <inertial>
+      <origin xyz="-4.0628e-08 -0.0310611 0.0130165" rpy="0 0 0"/>
+      <mass value="0.0115415"/>
+      <inertia ixx="5.26775e-06" ixy="-4e-12" ixz="-1.2e-11" iyy="1.21602e-06" iyz="1.7157e-07" izz="4.45903e-06"/>
+    </inertial>
+    <!-- Part stp39__configuration__2x6_17 -->
+    <!-- Part stp39__configuration__2x6_18 -->
+    <!-- Part radius -->
+    <!-- Part stp39__configuration__2x6_19 -->
+    <!-- Part dc15_a01_idle_cap_dummy -->
+    <!-- Part bts2_m2_6x8 -->
+    <!-- Part stp39__configuration__2x6_20 -->
+  </link>
+  <!-- Joint from humerus__configuration_right to radius -->
+  <joint name="right_elbow" type="revolute">
+    <origin xyz="-0.0145 -0.0515 -0.0145" rpy="-0 1.5708 0"/>
+    <parent link="humerus__configuration_right"/>
+    <child link="radius"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-2.18166" upper="2.18166"/>
+  </joint>
+  <!-- Joint from shoulder to humerus__configuration_right -->
+  <joint name="right_shoulder_roll" type="revolute">
+    <origin xyz="0.0145 0 -0.0195" rpy="-3.14159 -1.5708 0"/>
+    <parent link="shoulder"/>
+    <child link="humerus__configuration_right"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.14159" upper="0"/>
+  </joint>
+  <!-- Joint from trunk to shoulder -->
+  <joint name="right_shoulder_pitch" type="revolute">
+    <origin xyz="0 -0.0505 0.081" rpy="-1.5708 0 0"/>
+    <parent link="trunk"/>
+    <child link="shoulder"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.14159" upper="3.14159"/>
+  </joint>
+  <!-- Link hip -->
+  <link name="hip">
+    <inertial>
+      <origin xyz="0.00421822 1.46909e-07 -0.00948697" rpy="0 0 0"/>
+      <mass value="0.00884451"/>
+      <inertia ixx="9.36719e-07" ixy="-3.3e-11" ixz="1.95496e-07" iyy="4.32505e-06" iyz="0" izz="4.03697e-06"/>
+    </inertial>
+    <!-- Part hip__configuration_right -->
+    <!-- Part stp39__configuration__2x6_21 -->
+    <!-- Part stp39__configuration__2x6_22 -->
+    <!-- Part stp39__configuration__2x6_23 -->
+    <!-- Part stp39__configuration__2x6_24 -->
+    <!-- Part stp39__configuration__2x6_25 -->
+    <!-- Part stp39__configuration__2x6_26 -->
+    <!-- Part stp39__configuration__2x6_27 -->
+    <!-- Part stp39__configuration__2x6_28 -->
+    <!-- Part stp39__configuration__2x6_29 -->
+    <!-- Part stp39__configuration__2x6_30 -->
+    <!-- Part stp39__configuration__2x6_31 -->
+    <!-- Part stp39__configuration__2x6_32 -->
+  </link>
+  <!-- Link hip_block__configuration_right -->
+  <link name="hip_block__configuration_right">
+    <inertial>
+      <origin xyz="-5.75932e-05 0.00982795 0.0271518" rpy="0 0 0"/>
+      <mass value="0.04763"/>
+      <inertia ixx="1.64064e-05" ixy="-9.153e-09" ixz="7.8745e-08" iyy="1.33088e-05" iyz="6.63067e-07" izz="7.85889e-06"/>
+    </inertial>
+    <!-- Part stp39__configuration__2_2x8_27 -->
+    <!-- Part xl330_2 -->
+    <!-- Part dc15_a01_horn_idle2_dummy -->
+    <!-- Part stp39__configuration__2_2x8_28 -->
+    <!-- Part stp39__configuration__2_2x8_29 -->
+    <!-- Part stp39__configuration__2_2x8_30 -->
+    <!-- Part hip_dbl_block__configuration_right -->
+    <!-- Part stp39__configuration__2_2x8_31 -->
+    <!-- Part xl330_without_horn_7 -->
+    <!-- Part bts2_m2_6x8_2 -->
+    <!-- Part dc15_a01_idle_cap_dummy_2 -->
+    <!-- Part stp39__configuration__2_2x8_32 -->
+    <!-- Part spacer__configuration_right -->
+  </link>
+  <!-- Link femur__configuration_right -->
+  <link name="femur__configuration_right">
+    <inertial>
+      <origin xyz="-0.0109472 -0.0366847 -0.0147025" rpy="0 0 0"/>
+      <mass value="0.014726"/>
+      <inertia ixx="1.12665e-05" ixy="-1.12592e-06" ixz="1.333e-09" iyy="4.38335e-06" iyz="-4.521e-09" izz="8.95932e-06"/>
+    </inertial>
+    <!-- Part stp39__configuration__2x6_33 -->
+    <!-- Part femur__configuration_right -->
+    <!-- Part stp39__configuration__2x6_34 -->
+    <!-- Part stp39__configuration__2x6_35 -->
+    <!-- Part stp39__configuration__2x6_36 -->
+    <!-- Part stp39__configuration__2x6_37 -->
+    <!-- Part stp39__configuration__2x6_38 -->
+    <!-- Part stp39__configuration__2x6_39 -->
+    <!-- Part stp39__configuration__2x6_40 -->
+    <!-- Part stp39__configuration__2x6_41 -->
+    <!-- Part stp39__configuration__2x6_42 -->
+    <!-- Part stp39__configuration__2x6_43 -->
+    <!-- Part stp39__configuration__2x6_44 -->
+    <!-- Part stp39__configuration__2x6_45 -->
+    <!-- Part stp39__configuration__2x6_46 -->
+    <!-- Part stp39__configuration__2x6_47 -->
+    <!-- Part stp39__configuration__2x6_48 -->
+  </link>
+  <!-- Link tibia__configuration_right -->
+  <link name="tibia__configuration_right">
+    <inertial>
+      <origin xyz="0.00276278 -0.0196679 -0.0144621" rpy="0 0 0"/>
+      <mass value="0.0300463"/>
+      <inertia ixx="1.53882e-05" ixy="2.25674e-06" ixz="7.6682e-08" iyy="5.3311e-06" iyz="-1.37001e-07" izz="1.38581e-05"/>
+    </inertial>
+    <!-- Part stp39__configuration__2x6_49 -->
+    <!-- Part stp39__configuration__2x6_50 -->
+    <!-- Part stp39__configuration__2x6_51 -->
+    <!-- Part stp39__configuration__2x6_52 -->
+    <!-- Part stp39__configuration__2_2x8_33 -->
+    <!-- Part xl330_3 -->
+    <!-- Part tibia__configuration_right -->
+    <!-- Part stp39__configuration__2x6_53 -->
+    <!-- Part stp39__configuration__2_2x8_34 -->
+    <!-- Part stp39__configuration__2x6_54 -->
+    <!-- Part stp39__configuration__2_2x8_35 -->
+    <!-- Part stp39__configuration__2_2x8_36 -->
+    <!-- Part stp39__configuration__2x6_55 -->
+    <!-- Part stp39__configuration__2x6_56 -->
+  </link>
+  <!-- Link ankle_block__configuration_left -->
+  <link name="ankle_block__configuration_left">
+    <inertial>
+      <origin xyz="-0.0110676 -0.00979852 -0.0144015" rpy="0 0 0"/>
+      <mass value="0.04722"/>
+      <inertia ixx="7.83993e-06" ixy="-6.00742e-07" ixz="-4.9782e-08" iyy="1.29837e-05" iyz="-6.127e-09" izz="1.60971e-05"/>
+    </inertial>
+    <!-- Part stp39__configuration__2_2x8_37 -->
+    <!-- Part xl330_4 -->
+    <!-- Part dc15_a01_horn_idle2_dummy_2 -->
+    <!-- Part stp39__configuration__2_2x8_38 -->
+    <!-- Part stp39__configuration__2_2x8_39 -->
+    <!-- Part stp39__configuration__2_2x8_40 -->
+    <!-- Part ankle_dbl_block__configuration_right -->
+    <!-- Part stp39__configuration__2_2x8_41 -->
+    <!-- Part xl330_without_horn_8 -->
+    <!-- Part bts2_m2_6x8_3 -->
+    <!-- Part dc15_a01_idle_cap_dummy_3 -->
+    <!-- Part stp39__configuration__2_2x8_42 -->
+    <!-- Part spacer__configuration_right_2 -->
+  </link>
+  <!-- Link foot -->
+  <link name="foot">
+    <inertial>
+      <origin xyz="-0 -0.0168869 0.0347422" rpy="0 0 0"/>
+      <mass value="0.016823"/>
+      <inertia ixx="1.15605e-05" ixy="0" ixz="-0" iyy="1.2167e-05" iyz="5.67932e-07" izz="2.53496e-06"/>
+    </inertial>
+    <!-- Part stp39__configuration__2x6_57 -->
+    <!-- Part stp39__configuration__2x6_58 -->
+    <!-- Part stp39__configuration__2x6_59 -->
+    <!-- Part stp39__configuration__2x6_60 -->
+    <!-- Part stp39__configuration__2x6_61 -->
+    <!-- Part foot__configuration_right -->
+    <!-- Part stp39__configuration__2x6_62 -->
+    <!-- Part stp39__configuration__2x6_63 -->
+    <!-- Part stp39__configuration__2x6_64 -->
+  </link>
+  <!-- Frame right_foot (dummy link + fixed joint) -->
+  <link name="right_foot">
+    <origin xyz="0 0 0" rpy="0 -0 0"/>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-9"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+  </link>
+  <joint name="right_foot_frame" type="fixed">
+    <origin xyz="-0 -0.023 0.042" rpy="-1.5708 -1.5708 0"/>
+    <parent link="foot"/>
+    <child link="right_foot"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <!-- Joint from ankle_block__configuration_left to foot -->
+  <joint name="right_ankle_roll" type="revolute">
+    <origin xyz="-0.0385 0 -0.0145" rpy="3.14159 -1.5708 0"/>
+    <parent link="ankle_block__configuration_left"/>
+    <child link="foot"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-0.610865" upper="0.610865"/>
+  </joint>
+  <!-- Joint from tibia__configuration_right to ankle_block__configuration_left -->
+  <joint name="right_ankle_pitch" type="revolute">
+    <origin xyz="0.008 -0.0612131 -0" rpy="-0 0 3.14159"/>
+    <parent link="tibia__configuration_right"/>
+    <child link="ankle_block__configuration_left"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-1.5708" upper="0.610865"/>
+  </joint>
+  <!-- Joint from femur__configuration_right to tibia__configuration_right -->
+  <joint name="right_knee" type="revolute">
+    <origin xyz="-0.005 -0.062 -0" rpy="-0 0 -0"/>
+    <parent link="femur__configuration_right"/>
+    <child link="tibia__configuration_right"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-0.785398" upper="2.35619"/>
+  </joint>
+  <!-- Joint from hip_block__configuration_right to femur__configuration_right -->
+  <joint name="right_hip_pitch" type="revolute">
+    <origin xyz="-0.0145 -0 0.0385" rpy="3.14159 1.5708 0"/>
+    <parent link="hip_block__configuration_right"/>
+    <child link="femur__configuration_right"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-1.5708" upper="1.5708"/>
+  </joint>
+  <!-- Joint from hip to hip_block__configuration_right -->
+  <joint name="right_hip_roll" type="revolute">
+    <origin xyz="-0.02 0 -0.0214" rpy="-1.5708 -0 -1.5708"/>
+    <parent link="hip"/>
+    <child link="hip_block__configuration_right"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-0.610865" upper="0.610865"/>
+  </joint>
+  <!-- Joint from trunk to hip -->
+  <joint name="right_hip_yaw" type="revolute">
+    <origin xyz="0 -0.036 0" rpy="-0 0 0"/>
+    <parent link="trunk"/>
+    <child link="hip"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-4.18879" upper="1.0472"/>
+  </joint>
+  <!-- Link shoulder_2 -->
+  <link name="shoulder_2">
+    <inertial>
+      <origin xyz="-4.19e-10 2.814e-09 0.00850029" rpy="0 0 0"/>
+      <mass value="0.00898451"/>
+      <inertia ixx="1.06003e-06" ixy="-0" ixz="0" iyy="1.78233e-06" iyz="0" izz="1.86739e-06"/>
+    </inertial>
+    <!-- Part stp39__configuration__2x6_65 -->
+    <!-- Part stp39__configuration__2x6_66 -->
+    <!-- Part stp39__configuration__2x6_67 -->
+    <!-- Part stp39__configuration__2x6_68 -->
+    <!-- Part stp39__configuration__2x6_69 -->
+    <!-- Part stp39__configuration__2x6_70 -->
+    <!-- Part stp39__configuration__2x6_71 -->
+    <!-- Part stp39__configuration__2x6_72 -->
+    <!-- Part stp39__configuration__2x6_73 -->
+    <!-- Part shoulder_2 -->
+    <!-- Part stp39__configuration__2x6_74 -->
+    <!-- Part stp39__configuration__2x6_75 -->
+    <!-- Part stp39__configuration__2x6_76 -->
+  </link>
+  <!-- Link humerus__configuration_left -->
+  <link name="humerus__configuration_left">
+    <inertial>
+      <origin xyz="-0.000313281 0.0252784 -0.0143884" rpy="0 0 0"/>
+      <mass value="0.0416867"/>
+      <inertia ixx="1.76899e-05" ixy="3.01684e-07" ixz="-5.77e-10" iyy="3.9512e-06" iyz="7.6531e-08" izz="1.75853e-05"/>
+    </inertial>
+    <!-- Part stp39__configuration__2_2x8_43 -->
+    <!-- Part stp39__configuration__2_2x8_44 -->
+    <!-- Part stp39__configuration__2_2x8_45 -->
+    <!-- Part stp39__configuration__2_2x8_46 -->
+    <!-- Part xl330_5 -->
+    <!-- Part stp39__configuration__2_2x8_47 -->
+    <!-- Part stp39__configuration__2_2x8_48 -->
+    <!-- Part xl330_without_horn_9 -->
+    <!-- Part stp39__configuration__2_2x8_49 -->
+    <!-- Part stp39__configuration__2_2x8_50 -->
+    <!-- Part humerus_2 -->
+  </link>
+  <!-- Link radius_2 -->
+  <link name="radius_2">
+    <inertial>
+      <origin xyz="-4.0628e-08 0.0310611 -0.0130165" rpy="0 0 0"/>
+      <mass value="0.0115415"/>
+      <inertia ixx="5.26775e-06" ixy="4e-12" ixz="1.2e-11" iyy="1.21602e-06" iyz="1.7157e-07" izz="4.45903e-06"/>
+    </inertial>
+    <!-- Part stp39__configuration__2x6_77 -->
+    <!-- Part stp39__configuration__2x6_78 -->
+    <!-- Part radius_2 -->
+    <!-- Part stp39__configuration__2x6_79 -->
+    <!-- Part dc15_a01_idle_cap_dummy_4 -->
+    <!-- Part bts2_m2_6x8_4 -->
+    <!-- Part stp39__configuration__2x6_80 -->
+  </link>
+  <!-- Joint from humerus__configuration_left to radius_2 -->
+  <joint name="left_elbow" type="revolute">
+    <origin xyz="-0.0145 0.0515 -0.0145" rpy="0 -1.5708 0"/>
+    <parent link="humerus__configuration_left"/>
+    <child link="radius_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-2.18166" upper="2.18166"/>
+  </joint>
+  <!-- Joint from shoulder_2 to humerus__configuration_left -->
+  <joint name="left_shoulder_roll" type="revolute">
+    <origin xyz="-0.0145 0 0.0195" rpy="-3.14159 1.5708 0"/>
+    <parent link="shoulder_2"/>
+    <child link="humerus__configuration_left"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="0" upper="3.14159"/>
+  </joint>
+  <!-- Joint from trunk to shoulder_2 -->
+  <joint name="left_shoulder_pitch" type="revolute">
+    <origin xyz="-0 0.0505 0.081" rpy="1.5708 -0 -3.14159"/>
+    <parent link="trunk"/>
+    <child link="shoulder_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-3.14159" upper="3.14159"/>
+  </joint>
+  <!-- Link hip_2 -->
+  <link name="hip_2">
+    <inertial>
+      <origin xyz="-0.00421822 -1.46909e-07 -0.00948697" rpy="0 0 0"/>
+      <mass value="0.00884451"/>
+      <inertia ixx="9.36719e-07" ixy="-3.3e-11" ixz="-1.95496e-07" iyy="4.32505e-06" iyz="-0" izz="4.03697e-06"/>
+    </inertial>
+    <!-- Part hip__configuration_right_2 -->
+    <!-- Part stp39__configuration__2x6_81 -->
+    <!-- Part stp39__configuration__2x6_82 -->
+    <!-- Part stp39__configuration__2x6_83 -->
+    <!-- Part stp39__configuration__2x6_84 -->
+    <!-- Part stp39__configuration__2x6_85 -->
+    <!-- Part stp39__configuration__2x6_86 -->
+    <!-- Part stp39__configuration__2x6_87 -->
+    <!-- Part stp39__configuration__2x6_88 -->
+    <!-- Part stp39__configuration__2x6_89 -->
+    <!-- Part stp39__configuration__2x6_90 -->
+    <!-- Part stp39__configuration__2x6_91 -->
+    <!-- Part stp39__configuration__2x6_92 -->
+  </link>
+  <!-- Link hip_block__configuration_left -->
+  <link name="hip_block__configuration_left">
+    <inertial>
+      <origin xyz="6.0554e-05 0.00982795 0.0271548" rpy="0 0 0"/>
+      <mass value="0.04763"/>
+      <inertia ixx="1.64096e-05" ixy="8.495e-09" ixz="-7.6959e-08" iyy="1.3312e-05" iyz="6.62404e-07" izz="7.85888e-06"/>
+    </inertial>
+    <!-- Part stp39__configuration__2_2x8_51 -->
+    <!-- Part xl330_6 -->
+    <!-- Part dc15_a01_horn_idle2_dummy_3 -->
+    <!-- Part stp39__configuration__2_2x8_52 -->
+    <!-- Part stp39__configuration__2_2x8_53 -->
+    <!-- Part stp39__configuration__2_2x8_54 -->
+    <!-- Part hip_dbl_block__configuration_left -->
+    <!-- Part stp39__configuration__2_2x8_55 -->
+    <!-- Part xl330_without_horn_10 -->
+    <!-- Part bts2_m2_6x8_5 -->
+    <!-- Part dc15_a01_idle_cap_dummy_5 -->
+    <!-- Part stp39__configuration__2_2x8_56 -->
+    <!-- Part spacer__configuration_right_3 -->
+  </link>
+  <!-- Link femur__configuration_left -->
+  <link name="femur__configuration_left">
+    <inertial>
+      <origin xyz="0.0109472 0.0366847 -0.0142975" rpy="0 0 0"/>
+      <mass value="0.014726"/>
+      <inertia ixx="1.12665e-05" ixy="-1.12592e-06" ixz="1.333e-09" iyy="4.38335e-06" iyz="-4.521e-09" izz="8.95932e-06"/>
+    </inertial>
+    <!-- Part stp39__configuration__2x6_93 -->
+    <!-- Part femur__configuration_left -->
+    <!-- Part stp39__configuration__2x6_94 -->
+    <!-- Part stp39__configuration__2x6_95 -->
+    <!-- Part stp39__configuration__2x6_96 -->
+    <!-- Part stp39__configuration__2x6_97 -->
+    <!-- Part stp39__configuration__2x6_98 -->
+    <!-- Part stp39__configuration__2x6_99 -->
+    <!-- Part stp39__configuration__2x6_100 -->
+    <!-- Part stp39__configuration__2x6_101 -->
+    <!-- Part stp39__configuration__2x6_102 -->
+    <!-- Part stp39__configuration__2x6_103 -->
+    <!-- Part stp39__configuration__2x6_104 -->
+    <!-- Part stp39__configuration__2x6_105 -->
+    <!-- Part stp39__configuration__2x6_106 -->
+    <!-- Part stp39__configuration__2x6_107 -->
+    <!-- Part stp39__configuration__2x6_108 -->
+  </link>
+  <!-- Link tibia__configuration_left -->
+  <link name="tibia__configuration_left">
+    <inertial>
+      <origin xyz="-0.00275805 0.0196679 -0.0145379" rpy="0 0 0"/>
+      <mass value="0.0300463"/>
+      <inertia ixx="1.53882e-05" ixy="2.25747e-06" ixz="7.7561e-08" iyy="5.33188e-06" iyz="-1.37001e-07" izz="1.38589e-05"/>
+    </inertial>
+    <!-- Part stp39__configuration__2x6_109 -->
+    <!-- Part stp39__configuration__2x6_110 -->
+    <!-- Part stp39__configuration__2x6_111 -->
+    <!-- Part stp39__configuration__2x6_112 -->
+    <!-- Part stp39__configuration__2_2x8_57 -->
+    <!-- Part xl330_7 -->
+    <!-- Part tibia__configuration_left -->
+    <!-- Part stp39__configuration__2x6_113 -->
+    <!-- Part stp39__configuration__2_2x8_58 -->
+    <!-- Part stp39__configuration__2x6_114 -->
+    <!-- Part stp39__configuration__2_2x8_59 -->
+    <!-- Part stp39__configuration__2_2x8_60 -->
+    <!-- Part stp39__configuration__2x6_115 -->
+    <!-- Part stp39__configuration__2x6_116 -->
+  </link>
+  <!-- Link ankle_block__configuration_right -->
+  <link name="ankle_block__configuration_right">
+    <inertial>
+      <origin xyz="0.0110706 0.00979852 -0.0145955" rpy="0 0 0"/>
+      <mass value="0.04722"/>
+      <inertia ixx="7.83996e-06" ixy="-6.01409e-07" ixz="-5.1613e-08" iyy="1.29805e-05" iyz="-6.789e-09" izz="1.6094e-05"/>
+    </inertial>
+    <!-- Part stp39__configuration__2_2x8_61 -->
+    <!-- Part xl330_8 -->
+    <!-- Part dc15_a01_horn_idle2_dummy_4 -->
+    <!-- Part stp39__configuration__2_2x8_62 -->
+    <!-- Part stp39__configuration__2_2x8_63 -->
+    <!-- Part stp39__configuration__2_2x8_64 -->
+    <!-- Part ankle_dbl_block__configuration_right_2 -->
+    <!-- Part stp39__configuration__2_2x8_65 -->
+    <!-- Part xl330_without_horn_11 -->
+    <!-- Part bts2_m2_6x8_6 -->
+    <!-- Part dc15_a01_idle_cap_dummy_6 -->
+    <!-- Part stp39__configuration__2_2x8_66 -->
+    <!-- Part spacer__configuration_right_4 -->
+  </link>
+  <!-- Link foot_2 -->
+  <link name="foot_2">
+    <inertial>
+      <origin xyz="-0 -0.0168869 0.0347422" rpy="0 0 0"/>
+      <mass value="0.016823"/>
+      <inertia ixx="1.15605e-05" ixy="0" ixz="-0" iyy="1.2167e-05" iyz="5.67932e-07" izz="2.53496e-06"/>
+    </inertial>
+    <!-- Part stp39__configuration__2x6_117 -->
+    <!-- Part stp39__configuration__2x6_118 -->
+    <!-- Part stp39__configuration__2x6_119 -->
+    <!-- Part stp39__configuration__2x6_120 -->
+    <!-- Part stp39__configuration__2x6_121 -->
+    <!-- Part foot__configuration_right_2 -->
+    <!-- Part stp39__configuration__2x6_122 -->
+    <!-- Part stp39__configuration__2x6_123 -->
+    <!-- Part stp39__configuration__2x6_124 -->
+  </link>
+  <!-- Frame left_foot (dummy link + fixed joint) -->
+  <link name="left_foot">
+    <origin xyz="0 0 0" rpy="0 -0 0"/>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1e-9"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+  </link>
+  <joint name="left_foot_frame" type="fixed">
+    <origin xyz="-0 -0.023 0.042" rpy="-1.5708 -1.5708 0"/>
+    <parent link="foot_2"/>
+    <child link="left_foot"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+  <!-- Joint from ankle_block__configuration_right to foot_2 -->
+  <joint name="left_ankle_roll" type="revolute">
+    <origin xyz="0.0385 0 -0.0145" rpy="-0 -1.5708 0"/>
+    <parent link="ankle_block__configuration_right"/>
+    <child link="foot_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-0.610865" upper="0.610865"/>
+  </joint>
+  <!-- Joint from tibia__configuration_left to ankle_block__configuration_right -->
+  <joint name="left_ankle_pitch" type="revolute">
+    <origin xyz="-0.008 0.0612131 -0" rpy="-0 -0 3.14159"/>
+    <parent link="tibia__configuration_left"/>
+    <child link="ankle_block__configuration_right"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-1.5708" upper="0.610865"/>
+  </joint>
+  <!-- Joint from femur__configuration_left to tibia__configuration_left -->
+  <joint name="left_knee" type="revolute">
+    <origin xyz="0.005 0.062 0" rpy="-0 -0 -0"/>
+    <parent link="femur__configuration_left"/>
+    <child link="tibia__configuration_left"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-0.785398" upper="2.35619"/>
+  </joint>
+  <!-- Joint from hip_block__configuration_left to femur__configuration_left -->
+  <joint name="left_hip_pitch" type="revolute">
+    <origin xyz="-0.0145 -0 0.0385" rpy="0 -1.5708 0"/>
+    <parent link="hip_block__configuration_left"/>
+    <child link="femur__configuration_left"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-1.5708" upper="1.5708"/>
+  </joint>
+  <!-- Joint from hip_2 to hip_block__configuration_left -->
+  <joint name="left_hip_roll" type="revolute">
+    <origin xyz="0.02 0 -0.0214" rpy="-1.5708 -0 1.5708"/>
+    <parent link="hip_2"/>
+    <child link="hip_block__configuration_left"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-0.610865" upper="0.610865"/>
+  </joint>
+  <!-- Joint from trunk to hip_2 -->
+  <joint name="left_hip_yaw" type="revolute">
+    <origin xyz="-0 0.036 0" rpy="0 -0 -3.14159"/>
+    <parent link="trunk"/>
+    <child link="hip_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="10" velocity="10" lower="-1.0472" upper="4.18879"/>
+  </joint>
+</robot>

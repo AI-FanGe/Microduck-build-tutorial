@@ -1,0 +1,10 @@
+**/__pycache__/
+
+src/mjlab_microduck/robot/microduck/scad/
+
+.vscode/*
+.venv/*
+uv.lock
+
+logs/*
+wandb/*

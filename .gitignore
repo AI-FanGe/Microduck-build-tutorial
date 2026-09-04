@@ -1,0 +1,11 @@
+.venv/
+logs/
+wandb/
+__pycache__/
+*.pyc
+tmp_*/
+.tools/
+.publish/
+*.img
+*.img.xz
+*.img.xz.sha256

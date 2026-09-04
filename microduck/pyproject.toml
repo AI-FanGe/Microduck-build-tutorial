@@ -1,0 +1,24 @@
+[project]
+name = "microduck"
+version = "0.0.2"
+description = "Microduck project"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy",
+    "onnxruntime>=1.26.0",
+    "placo>=0.9.23",
+    "pollen_bmi088_imu_library==1.0.0rc1",
+    "rustypot>=1.4.2",
+]
+
+[dependency-groups]
+sim = [
+    "better-actuator-models",
+    "mujoco>=3.8.1",
+]
+
+[tool.uv]
+override-dependencies = [
+    "numpy>=2.3",
+]

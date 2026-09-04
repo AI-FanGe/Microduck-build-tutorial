@@ -1,0 +1,13 @@
+<default>
+    <default class="self_collision_only">
+        <geom group="3" contype="2" conaffinity="2"/>
+    </default>
+    <equality solref="0.002 1" solimp="0.99 0.999 0.0005 0.5 2"/>
+</default>
+<!-- <contact> -->
+    <!-- Jaw collision mesh overlaps the bottom head shell by ~2cm because the closed -->
+    <!-- loop linkage positions it inside the head. Without these excludes the -->
+    <!-- self-collision sensor reports a constant 2 contacts, giving a -->
+    <!-- permanent ~-2.0 reward penalty in the standup env. -->
+    <!-- <exclude body1="jaw" body2="bottom_head_shell"/> -->
+<!-- </contact> -->
