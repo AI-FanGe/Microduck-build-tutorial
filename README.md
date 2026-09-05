@@ -410,7 +410,7 @@ make sync
 5. 重置 `bootfs/network-config` 为占位模板。
 6. 确认 `~/microduck/src/agents/walk.onnx`、`.venv`、`microduck-gamepad.service` 都存在。
 7. 用 PiShrink 压缩生成 `microduck.img.xz`。
-8. 计算 SHA256 并一起发布。
+8. 计算 SHA256，并把校验值记录到 README 或 Release 说明里。
 
 本仓库已有详细步骤：
 
@@ -523,7 +523,6 @@ The current release image includes:
 Current prebuilt image:
 
 - [microduck.img.xz](https://github.com/AI-FanGe/Microduck-build-tutorial/releases/download/image.v1/microduck.img.xz)
-- [microduck.img.xz.sha256](https://github.com/AI-FanGe/Microduck-build-tutorial/releases/download/image.v1/microduck.img.xz.sha256)
 
 SHA256:
 
@@ -917,7 +916,7 @@ Recommended workflow:
 5. Reset `bootfs/network-config` to placeholder values.
 6. Verify that `~/microduck/src/agents/walk.onnx`, `.venv`, and `microduck-gamepad.service` exist.
 7. Use PiShrink to create `microduck.img.xz`.
-8. Compute SHA256 and publish it with the image.
+8. Compute SHA256 and record the checksum in the README or Release notes.
 
 Detailed steps are in:
 
