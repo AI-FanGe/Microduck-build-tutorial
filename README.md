@@ -1,5 +1,15 @@
 # Microduck
 
+<p align="center">
+  <img src="docs/assets/cad-exploded.gif" alt="Microduck 结构爆炸图" width="560">
+</p>
+<p align="center">
+  <img src="docs/assets/real-robot.gif" alt="Microduck 人机互动" width="560">
+</p>
+<p align="center">
+  <img src="docs/assets/real-walk.gif" alt="Microduck 实机行走" width="560">
+</p>
+
 Microduck 是一个小型双足机器人项目，包含两部分：
 
 - `microduck/`: Raspberry Pi Zero 2 W 上运行的部署代码，负责读取 IMU、读取手柄/键盘输入、驱动 Dynamixel 舵机，并加载 ONNX 行走策略。
@@ -26,7 +36,13 @@ Microduck 是一个小型双足机器人项目，包含两部分：
 当前预构建镜像：
 
 - [microduck.img.xz](https://github.com/AI-FanGe/Microduck-build-tutorial/releases/download/image.v1/microduck.img.xz)
+- [microduck.img.xz.sha256](https://github.com/AI-FanGe/Microduck-build-tutorial/releases/download/image.v1/microduck.img.xz.sha256)
 
+SHA256:
+
+```text
+096885dc32fb5b1db2ad69ba6bea868d8ab988f2b47c0d884eb63ba0dfdcb5c4
+```
 
 ## BOM
 
@@ -36,10 +52,10 @@ Microduck 是一个小型双足机器人项目，包含两部分：
 | :--- | :--- | :---: | :--- |
 | 控制板 | Raspberry Pi Zero 2 W | 1 | 运行控制程序、蓝牙手柄、Wi-Fi 和 SSH。 |
 | 舵机控制板 | ROBOTIS OpenRB-150 | 1 | 通过 USB 连接 Raspberry Pi，负责和 XL330 舵机总线通信。代码会优先自动查找 `/dev/serial/by-id/usb-ROBOTIS_OpenRB-150_*`。 |
-| 舵机 | Dynamixel XL330-M288-T | 15 | 当前行走代码使用 14 个舵机：双腿 10 个，头/颈 4 个。若安装嘴部舵机，可使用 ID 15，但当前行走模型不依赖它。 |
+| 舵机 | Dynamixel XL330-M288-T | 14 | 当前行走代码使用 14 个舵机：双腿 10 个，头/颈 4 个。若安装嘴部舵机，可使用 ID 15，但当前行走模型不依赖它。 |
 | 电池 | 成品 6V 可充电电池 | 1 | 当前硬件直接使用成品 6V 电池包供电，不使用两节 18650 自制电池组。请确认电池能提供足够瞬时电流。 |
 | 开关 | 电源开关 | 1 | 控制机器人主电源。 |
-| 存储 | 32GB 或更大 microSD 卡 | 1 | 推荐使用质量稳定的新卡。镜像刷写后首次启动会自动扩展分区。 |
+| 存储 | 16GB 或更大 microSD 卡 | 1 | 推荐使用质量稳定的新卡。镜像刷写后首次启动会自动扩展分区。 |
 | IMU | BNO080/BNO085/BNO086 模块 | 1 | 通过 I2C 读取姿态，代码会自动探测常见地址。 |
 | 结构件 | 3D 打印件 | 1 套 | 使用 `microduck/cad/` 中的模型打印。推荐 PLA。 |
 | 螺丝 | M2/M2.5 自攻螺丝 | 若干 | 舵机固定、舵盘固定、结构件连接。建议多备。 |
@@ -494,6 +510,16 @@ ssh-keygen -R <IP>
 ---
 
 # Microduck (English)
+
+<p align="center">
+  <img src="docs/assets/cad-exploded.gif" alt="Microduck exploded view" width="560">
+</p>
+<p align="center">
+  <img src="docs/assets/real-robot.gif" alt="Microduck human-robot interaction" width="560">
+</p>
+<p align="center">
+  <img src="docs/assets/real-walk.gif" alt="Microduck walking" width="560">
+</p>
 
 Microduck is a compact biped robot project. This repository presents one practical hardware and software setup for running an ONNX reinforcement learning walking policy on real Dynamixel XL330 servos.
 
