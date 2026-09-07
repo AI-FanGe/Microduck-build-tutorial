@@ -15,7 +15,7 @@ Microduck 是一个小型双足机器人项目，包含两部分：
 - `microduck/`: Raspberry Pi Zero 2 W 上运行的部署代码，负责读取 IMU、读取手柄/键盘输入、驱动 Dynamixel 舵机，并加载 ONNX 行走策略。
 - `mjlab_microduck/`: 基于 MuJoCo/MjLab 的强化学习训练环境，用来训练并导出 `walk.onnx`。
 
-本 README 面向装机和第一次运行：准备硬件、接线、刷写 `microduck.img.xz`、初始化 Wi-Fi、SSH 登录、运行模型，以及后续更新代码。
+本 README 面向装机和第一次运行：准备硬件、接线、刷写 `microduck.img.xz`、初始化 Wi-Fi、SSH 登录、运行模型，以及后续更新代码。3D打印的文件在项目中。
 
 ## 致谢
 
