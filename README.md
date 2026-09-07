@@ -180,6 +180,10 @@ xzcat microduck.img.xz | sudo dd of=/dev/sdX bs=4M status=progress conv=fsync
 
 ### 3. 初始化 Wi-Fi
 
+两种方法任选其一。Pi Zero 2 W 只支持 2.4GHz Wi-Fi，不要使用纯 5GHz 网络。
+
+#### 方法 1：在电脑上编辑 SD 卡
+
 刷写完成后，拔下再插回 SD 卡。Ubuntu 通常会挂载出两个分区：
 
 - `bootfs`: 启动分区，可直接编辑 Wi-Fi 配置。
@@ -217,8 +221,6 @@ network:
 - `<YOUR_WIFI_NAME>`: Wi-Fi 名称。
 - `<YOUR_WIFI_PASSWORD>`: Wi-Fi 密码。
 
-Pi Zero 2 W 只支持 2.4GHz Wi-Fi。不要使用纯 5GHz 网络。
-
 可配置多个 Wi-Fi：
 
 ```yaml
@@ -231,13 +233,42 @@ Pi Zero 2 W 只支持 2.4GHz Wi-Fi。不要使用纯 5GHz 网络。
 
 保存后安全弹出 SD 卡，插入机器人，打开电源。
 
+#### 方法 2：插上 HDMI 和键盘，在 Pi 上用 nmcli
+
+刷写完成后把 SD 卡插入 Pi，接上 mini HDMI 显示器和 USB 键盘（Zero 需要 OTG 转接头）。镜像是 Raspberry Pi OS Lite，没有桌面，开机后是终端登录。
+
+第一次启动会扩展分区，等待 1 到 3 分钟，不要断电。出现登录提示后：
+
+```text
+用户名: user
+密码:   password
+```
+
+输入密码时屏幕不会显示字符，直接回车。然后扫描并连接 Wi-Fi，设为开机自动连接：
+
+```bash
+nmcli device wifi list
+sudo nmcli device wifi connect "你的WiFi名字" password "你的WiFi密码"
+sudo nmcli con mod "你的WiFi名字" wifi.powersave disable
+sudo nmcli con mod "你的WiFi名字" connection.autoconnect yes
+```
+
+检查是否连上、是否自动连接：
+
+```bash
+nmcli -t -f NAME,TYPE,AUTOCONNECT,DEVICE connection show
+hostname -I
+```
+
+`AUTOCONNECT` 应为 `yes`，并且已经拿到 IP。之后每次开机都会自动连这个 Wi-Fi。
+
 ## 首次启动
 
 第一次启动会做几件事：
 
 - 扩展文件系统到整张 SD 卡。
 - 重新生成 SSH host keys。
-- 读取 `network-config` 并连接 Wi-Fi。
+- 读取 `network-config` 并连接 Wi-Fi（方法 1）。若用方法 2，首次启动后再用 `nmcli` 配置。
 - 启动后台手柄服务。
 
 等待 1 到 3 分钟，然后在电脑上测试：
@@ -270,10 +301,21 @@ passwd
 
 ### SSH 模式
 
-机器人放在稳定平面上，或者手扶住，避免刚上电时摔倒。
+在电脑上远程登录 Pi。Windows 用 PowerShell，Linux / macOS 用终端：
 
 ```bash
 ssh user@microduck.local
+```
+
+默认密码是 `password`。如果提示 `REMOTE HOST IDENTIFICATION HAS CHANGED`，先清掉旧记录再重连：
+
+```bash
+ssh-keygen -R microduck.local
+```
+
+登录成功后，把机器人放在稳定平面上或扶住，然后启动控制程序：
+
+```bash
 cd ~/microduck
 PYTHONPATH=src .venv/bin/python src/main.py
 ```
@@ -296,33 +338,34 @@ PYTHONPATH=src .venv/bin/python src/main.py
 | `i` | 显示/隐藏 IMU 信息 |
 | `q` | 停止控制循环 |
 
-### 从开发电脑运行
+### 远程 SSH 运行
 
-如果你在电脑上有本项目代码，配置 `~/.ssh/config`：
-
-```sshconfig
-Host microduck
-    HostName microduck.local
-    User user
-```
-
-然后：
+电脑和机器人连同一个 2.4GHz Wi-Fi 后，在 Windows PowerShell 或 Linux / macOS 终端执行：
 
 ```bash
-cd microduck
-make run
+ssh user@microduck.local
 ```
 
-停止：
+登录后：
 
 ```bash
-make stop
+cd ~/microduck
+PYTHONPATH=src .venv/bin/python src/main.py
+```
+
+停止：按 `q`。如果程序还在跑，另开一个 SSH 窗口：
+
+```bash
+ssh user@microduck.local
+cd ~/microduck
+PYTHONPATH=src .venv/bin/python src/stop.py
 ```
 
 安全关机：
 
 ```bash
-make shutdown
+ssh user@microduck.local
+sudo shutdown -h now
 ```
 
 不要直接断电。先关机，等 10 到 15 秒，再关闭电源开关。
@@ -456,7 +499,8 @@ microduck/docs/dev/clone_sd.md
 先等 1 到 3 分钟。仍找不到时：
 
 - 确认 Wi-Fi 是 2.4GHz。
-- 确认 `network-config` YAML 缩进没变。
+- 确认 `network-config` YAML 缩进没变（方法 1）。
+- 若用方法 2，在 Pi 上执行 `nmcli device wifi list` 和 `hostname -I` 确认已连上 2.4GHz 并拿到 IP。
 - 到路由器后台查 Pi 的 IP。
 - 用 `ssh user@<IP>` 登录。
 
@@ -696,6 +740,10 @@ Replace `/dev/sdX` with your SD card device. Do not write to your computer's int
 
 ### 3. Initialize Wi-Fi
 
+Use either method. The Raspberry Pi Zero 2 W only supports 2.4GHz Wi-Fi. Do not use a 5GHz-only network.
+
+#### Method 1: Edit the SD card on a computer
+
 After flashing, unplug and reinsert the SD card. Ubuntu usually mounts two partitions:
 
 - `bootfs`: boot partition, where Wi-Fi can be configured.
@@ -733,8 +781,6 @@ Replace:
 - `<YOUR_WIFI_NAME>`: Wi-Fi name.
 - `<YOUR_WIFI_PASSWORD>`: Wi-Fi password.
 
-The Raspberry Pi Zero 2 W only supports 2.4GHz Wi-Fi. Do not use a 5GHz-only network.
-
 Multiple Wi-Fi networks can be configured:
 
 ```yaml
@@ -747,13 +793,42 @@ Multiple Wi-Fi networks can be configured:
 
 Save the file, safely eject the SD card, insert it into the robot, and power on.
 
+#### Method 2: HDMI and keyboard, then nmcli on the Pi
+
+After flashing, insert the SD card into the Pi and connect a mini HDMI display plus a USB keyboard (the Zero needs a USB OTG adapter). The image is Raspberry Pi OS Lite, so there is no desktop — only a terminal login.
+
+The first boot expands the partition. Wait 1 to 3 minutes and do not power off. When the login prompt appears:
+
+```text
+username: user
+password: password
+```
+
+The password is not echoed. Then scan, connect, and enable autoconnect:
+
+```bash
+nmcli device wifi list
+sudo nmcli device wifi connect "YOUR_WIFI_NAME" password "YOUR_WIFI_PASSWORD"
+sudo nmcli con mod "YOUR_WIFI_NAME" wifi.powersave disable
+sudo nmcli con mod "YOUR_WIFI_NAME" connection.autoconnect yes
+```
+
+Check that it is connected and set to autoconnect:
+
+```bash
+nmcli -t -f NAME,TYPE,AUTOCONNECT,DEVICE connection show
+hostname -I
+```
+
+`AUTOCONNECT` should be `yes`, and the Pi should have an IP address. After that, this Wi-Fi will connect automatically on every boot.
+
 ## First Boot
 
 On first boot, the image will:
 
 - Expand the filesystem to the full SD card.
 - Regenerate SSH host keys.
-- Read `network-config` and join Wi-Fi.
+- Read `network-config` and join Wi-Fi (method 1). If you use method 2, configure Wi-Fi with `nmcli` after the first boot.
 - Start the background gamepad service.
 
 Wait 1 to 3 minutes, then test from your computer:
@@ -786,10 +861,21 @@ passwd
 
 ### SSH Mode
 
-Place the robot on a stable surface, or hold it securely to prevent falls.
+Log in to the Pi from a computer. Use PowerShell on Windows, or a terminal on Linux / macOS:
 
 ```bash
 ssh user@microduck.local
+```
+
+The default password is `password`. If SSH says `REMOTE HOST IDENTIFICATION HAS CHANGED`, clear the old host key and try again:
+
+```bash
+ssh-keygen -R microduck.local
+```
+
+After login, place the robot on a stable surface or hold it, then start the control program:
+
+```bash
 cd ~/microduck
 PYTHONPATH=src .venv/bin/python src/main.py
 ```
@@ -812,33 +898,34 @@ Keyboard controls:
 | `i` | Show/hide IMU status |
 | `q` | Stop the control loop |
 
-### Running from a Development Computer
+### Remote SSH
 
-If the project is also on your development computer, add this to `~/.ssh/config`:
-
-```sshconfig
-Host microduck
-    HostName microduck.local
-    User user
-```
-
-Then run:
+After the computer and the robot are on the same 2.4GHz Wi-Fi, run this in Windows PowerShell or a Linux / macOS terminal:
 
 ```bash
-cd microduck
-make run
+ssh user@microduck.local
 ```
 
-Stop:
+Then:
 
 ```bash
-make stop
+cd ~/microduck
+PYTHONPATH=src .venv/bin/python src/main.py
+```
+
+Stop with `q`. If the program is still running, open another SSH session:
+
+```bash
+ssh user@microduck.local
+cd ~/microduck
+PYTHONPATH=src .venv/bin/python src/stop.py
 ```
 
 Safe shutdown:
 
 ```bash
-make shutdown
+ssh user@microduck.local
+sudo shutdown -h now
 ```
 
 Do not cut power directly. Shut the Pi down first, wait 10 to 15 seconds, then turn off the power switch.
@@ -972,7 +1059,8 @@ microduck/docs/dev/clone_sd.md
 Wait 1 to 3 minutes first. If it still cannot be found:
 
 - Make sure the Wi-Fi is 2.4GHz.
-- Make sure the YAML indentation in `network-config` is unchanged.
+- Make sure the YAML indentation in `network-config` is unchanged (method 1).
+- If you used method 2, run `nmcli device wifi list` and `hostname -I` on the Pi to confirm it joined 2.4GHz Wi-Fi and has an IP.
 - Check the Pi's IP address in your router.
 - Login with `ssh user@<IP>`.
 
